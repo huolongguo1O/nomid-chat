@@ -7,8 +7,8 @@
 连接仅会影响一个频道
 
 ## 使用方式
-使用`python main.py`运行，注意修改main.py:75的websocket端口，
-client/client.js也有一起要改
+使用`python main.py`运行，注意修改`main.py:75`的`websocket`端口，
+`client/client.js:306`也要一起改
 
 ## 技术原理
 说白了不算去中心化，就是多个服务器相连接
