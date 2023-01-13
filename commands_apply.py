@@ -16,8 +16,8 @@ COMMAND_DB = {
 	"color":color.Color,
 	"whisper":whisper.Whisper,
 	"addserver":addserver.AddServer,
-	"login":login.Login,
-
+	"kick":kick.Kick,
+	"delserver":delserver.DelServer,
 
 }
 

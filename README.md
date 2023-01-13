@@ -15,3 +15,4 @@
 
 ## LICENSE
 使用GPL，防止有人改服务器
+client文件夹下的代码遵循MIT许可证

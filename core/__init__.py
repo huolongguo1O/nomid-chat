@@ -5,5 +5,6 @@ __all__ = [
 	"join",
 	"whisper",
 	"addserver",
-	"login"
+	"kick",
+	"delserver"
 	]

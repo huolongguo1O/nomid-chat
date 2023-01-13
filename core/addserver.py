@@ -25,6 +25,9 @@ def handler(ws,users,userobj,sn):
 
 			users.broadcasttext(userobj.channel,dumps(data))
 		if data['cmd']=='onlineSet':
+			if 'servername' in data:
+				sn=data['servername']
+
 			for i in range(len(data['nicks'])):
 				
 
@@ -66,6 +69,8 @@ class AddServer(base.CommandBase):
 			sn=self.data["sn"]
 
 			base.serverwss.append(websocket1)
+
+			base.servernames.append(sn)
 			_thread.start_new_thread( handler, (websocket1,self.users,userobject,sn,) )
 
 

@@ -96,6 +96,16 @@ class Handler:
 					"cmd":"color",
 					"color":content
 					} 
+			if command == "kick":
+				return {
+					"cmd":"kick",
+					"name":content
+					} 
+			if command == "delserver":
+				return {
+					"cmd":"delserver",
+					"name":content
+					} 
 			elif command == "addserver":
 				logging.info('base.py: in addserver')
 				return {

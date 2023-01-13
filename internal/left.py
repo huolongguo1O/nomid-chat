@@ -28,7 +28,7 @@ class Left(base.CommandBase):
 				self.users.userset.remove(user)
 				break
 		else:
-			logging.warning("User not found.But connection closed")
+			logging.warning("User not found.\nBut connection closed\a")
 			return None
 
 		# broadcast
