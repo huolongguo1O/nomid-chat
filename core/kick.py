@@ -13,12 +13,13 @@ class Kick(base.CommandBase):
 			data=data)
 
 	def execute(self):
+		'''
 		for user in self.users.userset:
 			if user.websocket == self.websocket:
 
 				if user.level==100:
 					return
-				
+		'''
 
 		for user in self.users.userset:
 			# print(user.nick)
