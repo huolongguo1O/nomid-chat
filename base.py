@@ -5,8 +5,12 @@ import websockets
 import random
 import base64
 import hashlib
+# config 不遵循GPL
 servername='test'
 serveraddr='ws://test.example/awa'
+mods=['NGY5Zj']
+salt='just for test'
+# config 结束
 servernames=[]
 serveraddrs=[]
 serverremoteaddr=[]
@@ -95,16 +99,6 @@ class Handler:
 				return {
 					"cmd":"color",
 					"color":content
-					} 
-			if command == "kick":
-				return {
-					"cmd":"kick",
-					"name":content
-					} 
-			if command == "delserver":
-				return {
-					"cmd":"delserver",
-					"name":content
 					} 
 			elif command == "addserver":
 				logging.info('base.py: in addserver')

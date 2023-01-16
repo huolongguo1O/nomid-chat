@@ -71,12 +71,10 @@ async def server_run(websocket,path):
 if __name__ == '__main__':
 	server = websockets.serve(
 		server_run,
-		"localhost",
+		"0.0.0.0",
 		6060)
 	asyncio.get_event_loop().run_until_complete(server)
 	asyncio.get_event_loop().run_forever()
-
-
 
 # The Zen of Python, by Tim Peters
 

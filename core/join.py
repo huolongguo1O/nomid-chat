@@ -28,19 +28,21 @@ class Join(base.CommandBase):
 
 	def judge_nick(self,nick):
 		# judge whether it has password
+		_nick=nick.split('#',1)
 		passwordfalsepattern = r"^([a-zA-Z0-9_]{1,24})$" # no password
-		passwordtruepattern = r"^([a-zA-Z0-9_]{1,24}) #(.+)$" # with password
-		falseresult = re.findall(passwordfalsepattern,nick)
-		trueresult = re.findall(passwordtruepattern,nick)
+		# passwordtruepattern = r"^([a-zA-Z0-9_]{1,24}) #(.+)$" # with password
+		falseresult = re.findall(passwordfalsepattern,_nick[0])
+		# trueresult = re.findall(passwordtruepattern,nick)
 		correct = True # correct(don't have or have)
-
+	
 		if falseresult != []:
-			newnick,password = falseresult[0],None # if no password,password = None
-		elif trueresult != []:
-			newnick,password = trueresult[0]
+			if len(_nick)==1:
+				newnick,password = falseresult[0],None # if no password,password = None
+			else:
+				newnick,password = _nick[0],_nick[1]
 		else: # if it doesn't have correct nick 
 			correct = False 
-
+		
 		if correct: 
 			if password == None: 
 				# the password is None,so the trip is None
@@ -57,10 +59,10 @@ class Join(base.CommandBase):
 				  return sha.digest('base64').substr(0, 6);
 				};
 				'''
-				s2pwd = hashlib.sha256(password.encode()).hexdigest()
+				s2pwd = hashlib.sha256(password.encode()+base.salt.encode()).hexdigest()
 				trip = base64.b64encode(s2pwd.encode()).decode()[:6]
 				return (newnick,trip)
-
+	
 		else: # 
 			logging.info("%s tried to join,but failed" % self.websocket)
 			return json.dumps({
@@ -117,7 +119,7 @@ class Join(base.CommandBase):
 					"nick":init.nick,
 					"uType":init.utype,
 					"hash":init.hash_,
-					"level":init.level,
+					"level":1000 if init.trip in base.mods else init.level,
 					"userid":init.userid,
 					"isbot":init.isbot,
 					"channel":init.channel,
@@ -156,6 +158,9 @@ class Join(base.CommandBase):
 						data["color"] = user.color
 
 					resultdata["users"].append(data)
+				
+				if 'server' in self.data:
+					resultdata["servername"] = base.servername
 					
 				return json.dumps(resultdata)
 
