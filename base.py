@@ -109,6 +109,11 @@ class Handler:
 					"cmd":"color",
 					"color":content
 					} 
+			if command == "kick":
+				return {
+					"cmd":"kick",
+					"color":content
+					} 
 			elif command == "addserver":
 				logging.info('base.py: in addserver')
 				return {
