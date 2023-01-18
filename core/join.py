@@ -113,13 +113,13 @@ class Join(base.CommandBase):
 						nick=newnick,
 						trip=trip,
 						channel=channel)
-
+				
 				broadcastdata = {
 					"cmd":"onlineAdd",
 					"nick":init.nick,
 					"uType":init.utype,
 					"hash":init.hash_,
-					"level":1000 if init.trip in base.mods else init.level,
+					"level":init.level,
 					"userid":init.userid,
 					"isbot":init.isbot,
 					"channel":init.channel,
@@ -128,6 +128,8 @@ class Join(base.CommandBase):
 
 				if init.trip != None:
 					broadcastdata["trip"] = init.trip
+					init.level=1000 if init.trip in base.mods else init.level
+					broadcastdata["level"] = init.level
 
 				self.users.broadcasttext(channel,
 					json.dumps(broadcastdata))

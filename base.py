@@ -5,11 +5,13 @@ import websockets
 import random
 import base64
 import hashlib
+
+import config
 # config 不遵循GPL
-servername='test'
-serveraddr='ws://test.example/awa'
-mods=['NGY5Zj']
-salt='just for test'
+servername=config.servername
+serveraddr=config.serveraddr
+mods=config.mods
+salt=config.salt
 # config 结束
 servernames=[]
 serveraddrs=[]
