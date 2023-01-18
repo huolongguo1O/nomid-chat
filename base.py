@@ -112,7 +112,7 @@ class Handler:
 			if command == "kick":
 				return {
 					"cmd":"kick",
-					"color":content
+					"name":content
 					} 
 			elif command == "addserver":
 				logging.info('base.py: in addserver')
