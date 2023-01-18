@@ -27,7 +27,7 @@ def handler(ws,users,userobj,sn):
 		if data['cmd']=='onlineSet':
 			if 'servername' in data:
 				sn=data['servername']
-
+			'''
 			for i in range(len(data['nicks'])):
 				
 
@@ -44,7 +44,7 @@ def handler(ws,users,userobj,sn):
 					"time":round(time.time())
 					}
 				users.broadcasttextfromserver(userobj.channel,dumps(broadcastdata))
-		
+			'''
 
 class AddServer(base.CommandBase):
 	def __init__(self,websocket,users,data):
