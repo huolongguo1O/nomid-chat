@@ -15,15 +15,15 @@ def handler(ws,users,userobj,sn):
 		if data['cmd']=='chat':
 			data['nick']+='-'+sn
 
-			users.broadcasttext(userobj.channel,dumps(data))
+			users.broadcasttextfromserver(userobj.channel,dumps(data))
 		if data['cmd']=='onlineAdd':
 			data['nick']+='-'+sn
 
-			users.broadcasttext(userobj.channel,dumps(data))
+			users.broadcasttextfromserver(userobj.channel,dumps(data))
 		if data['cmd']=='onlineRemove':
 			data['nick']+='-'+sn
 
-			users.broadcasttext(userobj.channel,dumps(data))
+			users.broadcasttextfromserver(userobj.channel,dumps(data))
 		if data['cmd']=='onlineSet':
 			if 'servername' in data:
 				sn=data['servername']
