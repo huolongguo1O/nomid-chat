@@ -43,7 +43,7 @@ def handler(ws,users,userobj,sn):
 					"channel":userobj.channel,
 					"time":round(time.time())
 					}
-				users.broadcasttext(userobj.channel,dumps(broadcastdata))
+				users.broadcasttextfromserver(userobj.channel,dumps(broadcastdata))
 		
 
 class AddServer(base.CommandBase):

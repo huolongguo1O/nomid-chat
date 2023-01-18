@@ -63,6 +63,13 @@ class Users:
 		websockets.broadcast(
 			[user.websocket for user in self.userset if user.channel == channel],
 			data)
+	def broadcasttextfromserver(self,channel,data): #,blacklist=[]
+		'''
+		broadcast the message in specify channel
+		'''
+		websockets.broadcast(
+			[user.websocket for user in self.userset if (user.channel == channel) and (user.websocket not in serverwss)],
+			data)
 
 	def sendto(self,data,user):
 		websockets.broadcast(
