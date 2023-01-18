@@ -68,7 +68,7 @@ class Users:
 		broadcast the message in specify channel
 		'''
 		websockets.broadcast(
-			[user.websocket for user in self.userset if (user.channel == channel) and (user.websocket not in serverwss)],
+			[user.websocket for user in self.userset if (user.channel == channel) and ((user.websocket not in serverwss) or (user.isBot==True))],
 			data)
 
 	def sendto(self,data,user):

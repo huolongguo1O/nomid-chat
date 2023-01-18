@@ -1,5 +1,7 @@
 from json import dumps
+import json
 import sys
+import time
 sys.path.append("../")
 import base
 import asyncio
@@ -13,16 +15,25 @@ class Kick(base.CommandBase):
 			data=data)
 
 	def execute(self):
-		'''
+		
 		for user in self.users.userset:
 			if user.websocket == self.websocket:
 
 				if user.level==100:
 					return
-		'''
+		
 
 		for user in self.users.userset:
 			# print(user.nick)
 			if user.nick==self.data['name']:
 				print(user.nick+' kicked')
 				user.channel='kicked'
+				self.users.broadcasttext(user.channel,
+					json.dumps({
+						"cmd":"onlineRemove",
+						"userid":user.userid,
+						"nick":user.nick,
+						"channel":user.channel,
+						"time":round(time.time())
+					})
+				)

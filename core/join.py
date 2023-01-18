@@ -131,6 +131,8 @@ class Join(base.CommandBase):
 
 				self.users.broadcasttext(channel,
 					json.dumps(broadcastdata))
+				if 'server' in self.data:
+					init.isBot=True
 					
 				self.users.userset.add(init)
 
