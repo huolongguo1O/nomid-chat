@@ -70,7 +70,7 @@ class Users:
 		broadcast the message in specify channel
 		'''
 		websockets.broadcast(
-			[user.websocket for user in self.userset if (user.channel == channel) and ((user.websocket not in serverwss) or (user.isBot==False) or (user.nick.startswith('server')))],
+			[user.websocket for user in self.userset if (user.channel == channel) and ((user.websocket not in serverwss) or (user.isBot==False) or (not user.nick.startswith('server')))],
 			data)
 
 	def sendto(self,data,user):
