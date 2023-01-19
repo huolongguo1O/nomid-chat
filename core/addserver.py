@@ -13,9 +13,12 @@ def handler(ws,users,userobj,sn):
 		data=loads(ws.recv())
 
 		if data['cmd']=='chat':
-			data['nick']+='-'+sn
+			if '-' not in data['nick']:
+				data['nick']+='-'+sn
+			
 
-			users.broadcasttextfromserver(userobj.channel,dumps(data))
+				users.broadcasttextfromserver(userobj.channel,dumps(data))
+		'''
 		if data['cmd']=='onlineAdd':
 			data['nick']+='-'+sn
 
@@ -24,6 +27,7 @@ def handler(ws,users,userobj,sn):
 			data['nick']+='-'+sn
 
 			users.broadcasttextfromserver(userobj.channel,dumps(data))
+		'''
 		if data['cmd']=='onlineSet':
 			if 'servername' in data:
 				sn=data['servername']
