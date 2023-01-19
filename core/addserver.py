@@ -18,6 +18,7 @@ def handler(ws,users,userobj,sn):
 			
 
 				users.broadcasttextfromserver(userobj.channel,dumps(data))
+				print('Turning a packet from another server')
 		'''
 		if data['cmd']=='onlineAdd':
 			data['nick']+='-'+sn
@@ -28,9 +29,12 @@ def handler(ws,users,userobj,sn):
 
 			users.broadcasttextfromserver(userobj.channel,dumps(data))
 		'''
-		if data['cmd']=='onlineSet':
+		'''if data['cmd']=='onlineSet':
 			if 'servername' in data:
 				sn=data['servername']
+		'''
+		if True:
+			pass
 			'''
 			for i in range(len(data['nicks'])):
 				
@@ -65,16 +69,19 @@ class AddServer(base.CommandBase):
 
 					userobject = user 
 					break
-
+			print('Starting '+self.data['servername'])
+	
 			websocket1=websocket.create_connection(self.data['servername'])
+			print('Connecting')	
 
 			websocket1.send(dumps({"cmd":"join","nick":"server_"+base.servername,"channel":userobject.channel}))
-
+			print('Joining')
 			sn=self.data["sn"]
 
 			base.serverwss.append(websocket1)
 
 			base.servernames.append(sn)
+			print('Add server done')
 			_thread.start_new_thread( handler, (websocket1,self.users,userobject,sn,) )
 
 
