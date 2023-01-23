@@ -19,7 +19,7 @@ def handler(ws,users,userobj,sn):
 					for i in users.userset:
 
 						if t[2] == i.nick and i.channel==userobj.channel:
-							users.sendto(data,i.nick)
+							users.sendto(data,i)
 
 
 
