@@ -14,7 +14,7 @@ def handler(ws,users,userobj,sn):
 		if data["cmd"]=="info":
 			if "type" in data:
 				if data["type"]=="whisper":
-					data["text"].replace(data["from"],data["from"]+'-'+sn,1)
+					data["text"]=data["text"].replace(data["from"],data["from"]+'-'+sn,1)
 					t=data["text"].split(' ',4)
 					for i in users.userset:
 
