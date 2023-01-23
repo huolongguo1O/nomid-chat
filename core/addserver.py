@@ -1,4 +1,5 @@
 from json import dumps, loads
+import json
 import random
 import sys
 import time
@@ -19,7 +20,7 @@ def handler(ws,users,userobj,sn):
 					for i in users.userset:
 
 						if t[2] == i.nick and i.channel==userobj.channel:
-							users.sendto(data,i)
+							users.sendto(json.dumps(data),i)
 
 
 
