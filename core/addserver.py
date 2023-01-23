@@ -15,6 +15,15 @@ def handler(ws,users,userobj,sn):
 			if "type" in data:
 				if data["type"]=="whisper":
 					data["text"].replace(data["from"],data["from"]+'-'+sn,1)
+					t=data["text"].split(' ',4)
+					for i in users.userset:
+
+						if t[2] == i.nick and i.channel==userobj.channel:
+							users.sendto(data,i.nick)
+
+
+
+
 
 		if data['cmd']=='chat':
 			if '-' not in data['nick']:
