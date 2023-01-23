@@ -11,6 +11,10 @@ def handler(ws,users,userobj,sn):
 
 	while 1:
 		data=loads(ws.recv())
+		if data["cmd"]=="info":
+			if "type" in data:
+				if data["type"]=="whisper":
+					data["text"].replace(data["from"],data["from"]+'-'+sn,1)
 
 		if data['cmd']=='chat':
 			if '-' not in data['nick']:
